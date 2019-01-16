@@ -3,6 +3,4 @@ const app = (req, res) => {
   res.end();
 };
 
-// Export a function that can act as a handler
-
 module.exports = app;

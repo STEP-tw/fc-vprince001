@@ -1,0 +1,12 @@
+header{
+  color: darkorange;
+  font-size: 40px;
+  text-align: right;
+  margin-right: 150px;
+}
+
+.line{
+  height: 1px;
+  width: 1250px;
+  background-color: black;
+}
