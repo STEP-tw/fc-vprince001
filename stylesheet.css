@@ -1,12 +1,13 @@
-header{
-  color: darkorange;
-  font-size: 40px;
+.headline {
+  border-top: 1px solid black;
+  border-bottom: 3px solid black;
+  color: orange;
   text-align: right;
-  margin-right: 150px;
 }
 
-.line{
-  height: 1px;
-  width: 1250px;
-  background-color: black;
+.main-image {
+  height: 100px;
+  width: 100px;
+  margin-left: 100px;
+  display: block;
 }
