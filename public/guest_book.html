@@ -3,6 +3,7 @@
 <head>
   <title>Guest Book</title>
   <link rel="stylesheet" type="text/css" media="screen" href="./style/main.css" />
+  <script src="/script/guest_book.js"></script>
 </head>
 <body>
   <div class="heading">
@@ -19,12 +20,9 @@
       <input type="Submit" value="Submit">
     </form>
     <div>
-      <div><img
-        id="refresh"
-        src="/data/watering_jar.gif"
-        class="main-image"
-      /></div>
-      ___COMMENTS___
+      <div><h2>Comments<span id="refresh">&#x21bb;</span></h2></div>
+      <div id="comments">
+      </div>
     </div>
 </body>
 </html>

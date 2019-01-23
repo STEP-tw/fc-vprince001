@@ -22,21 +22,6 @@ const readPostBody = function(req, res, next) {
   });
 };
 
-const createCommentsHTML = function(comments) {
-  const commentsHTML = comments.map(({ date, name, comment }) => {
-    return `<p>${date}: <strong>${name}</strong> : ${comment}</p>`;
-  });
-  return commentsHTML.join("\n");
-};
-
-const serveGuestBookPage = function(req, res) {
-  fs.readFile("./public/guest_book.html", "utf8", (err, content) => {
-    const commentsHTML = createCommentsHTML(comments);
-    const guestBookPage = content.replace("___COMMENTS___", commentsHTML);
-    send(res, 200, guestBookPage);
-  });
-};
-
 const readArgs = text => {
   let args = {};
   const splitKeyValue = pair => pair.split("=");
@@ -50,16 +35,16 @@ const readArgs = text => {
   return args;
 };
 
-const saveComment = function(req, res) {
+const saveComment = function(req, res, next) {
   const comment = readArgs(req.body);
   comment.date = new Date();
-  comments.push(comment);
+  comments.unshift(comment);
   fs.writeFile(
     "./private_data/comments.json",
     JSON.stringify(comments),
     err => {
       if (err) send(res, 500, "");
-      serveGuestBookPage(req, res);
+      next();
     }
   );
 };
@@ -87,10 +72,14 @@ const send = function(res, statusCode, content) {
   res.write(content);
   res.end();
 };
-  
+
+const serveCommentsJSON = function(req, res) {
+  send(res, 200, JSON.stringify(comments));
+};
+
 app.use(readPostBody);
-app.get("/guest_book.html", serveGuestBookPage);
 app.post("/guest_book.html", saveComment);
+app.get("/comments", serveCommentsJSON);
 app.use(requestHandler);
 
 module.exports = app.handleRequest.bind(app);
