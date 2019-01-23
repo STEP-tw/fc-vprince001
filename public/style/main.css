@@ -3,6 +3,7 @@
   border-bottom: 3px solid black;
   color: orange;
   text-align: right;
+  margin-right: 100px;
 }
 
 .main-image {
@@ -10,4 +11,18 @@
   width: 100px;
   margin-left: 100px;
   display: block;
+}
+
+.heading{
+  font-size: 20px;
+  text-align: center;
+  color: orange;
+}
+
+form{
+  font-size: 25px;
+}
+
+.input{
+  font-size: 20px; 
 }
